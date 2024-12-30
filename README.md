@@ -65,7 +65,7 @@ Steps to install all the required CLIs (nkp, kubectl and helm) to create and man
 
 1. [(Optional) Create NKP Cluster on Nutanix](#optional-create-nkp-cluster-on-nutanix)
 
-1. [(Optional) Create a Private Registry with Harbor](#optional-install-harbor)
+1. [(Optional) Create a Private Registry with Harbor](#optional-create-a-private-registry-with-harbor)
 
 ## Overview
 
