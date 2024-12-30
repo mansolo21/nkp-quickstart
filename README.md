@@ -65,6 +65,8 @@ Steps to install all the required CLIs (nkp, kubectl and helm) to create and man
 
 1. [(Optional) Create NKP Cluster on Nutanix](#optional-create-nkp-cluster-on-nutanix)
 
+1. [(Optional) Create a Private Registry with Harbor](#optional-install-harbor)
+
 ## Overview
 
 The NKP CLI is a command-line interface for managing NKP-based workflows. This guide provides a quick and easy way to install the required CLIs (nkp, kubectl and helm) using the Rocky Linux image provided by Nutanix in the [Nutanix Support Portal](https://portal.nutanix.com/page/downloads?product=nkp).
@@ -219,6 +221,54 @@ This installation method lets you fully customize your cluster configuration. Th
         --registry-mirror-url http://$REGISTRY_MIRROR_URL \
         --self-managed
     ```
+## Create a Private Registry with Harbor
+
+1. Before you start, ensure you meet the prerequisites:
+
+    - Static IP address for the VM
+    - FQDN registered on DNS. Harbor must be accesible from bastion host and all nkp clusters, both management and managed
+
+1. Connect to Prism Central
+
+1. Create a virtual machine
+
+    - Name: harbor registry
+    - vCPUs: 4
+    - Memory: 8
+    - Disk: Clone from Image (select the Rocky Linux you previously uploaded)
+    - Disk Capacity: 160 (default is 20)
+    - Guest Customization: Cloud-init (Linux)
+    - Custom Script:
+
+        ```yaml
+        #cloud-config
+        ssh_pwauth: true
+        chpasswd:
+          expire: false
+          users:
+          - name: nutanix
+            password: nutanix/4u # Recommended to change the password or update the script to use SSH keys
+            type: text
+        bootcmd:
+        - mkdir -p /etc/docker
+        write_files:
+        - content: |
+            {
+                "insecure-registries": ["harbor.ntnx.local"]
+            }
+          path: /etc/docker/daemon.json
+        runcmd:
+        - '[ ! -f "/etc/yum.repos.d/nutanix_rocky9.repo" ] || mv -f /etc/yum.repos.d/nutanix_rocky9.repo /etc/yum.repos.d/nutanix_rocky9.repo.disabled'
+        - dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+        - dnf -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+        - systemctl --now enable docker
+        - usermod -aG docker nutanix
+        - newgrp docker
+        - 'curl -Lo harbor-offline-installer-v2.12.1-rc3.tgz "https://github.com/goharbor/harbor/releases/download/v2.12.1-rc3/harbor-offline-installer-v2.12.1-rc3.tgz"'
+        - tar -zxvf harbor-offline-installer-v2.12.1-rc3.tgz
+        - eject
+        ```
+
 
 ## Support and Disclaimer
 
