@@ -22,7 +22,7 @@ Steps to install all the required CLIs (nkp, kubectl and helm) to create and man
     write_files:
     - content: |
         {
-            "insecure-registries": ["registry.nutanixdemo.com"]
+            "insecure-registries": ["harbor.ntnx.local"]
         }
       path: /etc/docker/daemon.json
     runcmd:
@@ -221,7 +221,7 @@ This installation method lets you fully customize your cluster configuration. Th
         --registry-mirror-url http://$REGISTRY_MIRROR_URL \
         --self-managed
     ```
-## Create a Private Registry with Harbor
+## (Optional) Create a Private Registry with Harbor
 
 1. Before you start, ensure you meet the prerequisites:
 
