@@ -264,7 +264,7 @@ This installation method lets you fully customize your cluster configuration. Th
         - systemctl --now enable docker
         - usermod -aG docker nutanix
         - newgrp docker
-        - 'curl -Lo harbor-offline-installer-v2.12.1-rc3.tgz "https://github.com/goharbor/harbor/releases/download/v2.12.1-rc3/harbor-offline-installer-v2.12.1-rc3.tgz"'
+        - 'curl -Lo /root/harbor-offline-installer-v2.12.1-rc3.tgz "https://github.com/goharbor/harbor/releases/download/v2.12.1-rc3/harbor-offline-installer-v2.12.1-rc3.tgz"'
         - tar -zxvf harbor-offline-installer-v2.12.1-rc3.tgz
         - eject
         ```
