@@ -106,8 +106,7 @@ For NKP CLI:
     - Disk Capacity: 128 (default is 20)
     - Guest Customization: Cloud-init (Linux)
     - Custom Script:
-
-         ```yaml
+```yaml
     #cloud-config
     ssh_pwauth: true
     chpasswd:
@@ -146,10 +145,6 @@ For NKP CLI:
     - 'wall "If you are seeing this message, please reconnect your SSH session. Otherwise, the NKP CLI installation process may fail."'
     final_message: "The machine is ready after $UPTIME seconds. Go ahead and install the NKP CLI using: $ curl -sL https://raw.githubusercontent.com/nutanixdev/nkp-quickstart/main/scripts/get-nkp-cli | bash"
     ```
-    <details>
-    <summary>click to view example</summary>
-    <IMG src="./images/create_vm_summary.png" atl="Create VM summary" />
-    </details>
 
 1. Power on the virtual machine
 
