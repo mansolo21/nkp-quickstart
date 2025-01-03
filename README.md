@@ -106,7 +106,7 @@ For NKP CLI:
     - Disk Capacity: 128 (default is 20)
     - Guest Customization: Cloud-init (Linux)
     - Custom Script:
-```yaml
+    ```yaml
     #cloud-config
     ssh_pwauth: true
     chpasswd:
