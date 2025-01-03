@@ -101,43 +101,51 @@ For NKP CLI:
 
     - Name: nkp-jump host
     - vCPUs: 2
-    - Memory: 4
+    - Memory: 8
     - Disk: Clone from Image (select the Rocky Linux you previously uploaded)
     - Disk Capacity: 128 (default is 20)
     - Guest Customization: Cloud-init (Linux)
     - Custom Script:
 
-        ```yaml
-        #cloud-config
-        ssh_pwauth: true
-        chpasswd:
-          expire: false
-          users:
-          - name: nutanix
-            password: nutanix/4u # Recommended to change the password or update the script to use SSH keys
-            type: text
-        bootcmd:
-        - mkdir -p /etc/docker
-        write_files:
-        - content: |
-            {
-                "insecure-registries": ["registry.nutanixdemo.com"]
-            }
-          path: /etc/docker/daemon.json
-        runcmd:
-        - '[ ! -f "/etc/yum.repos.d/nutanix_rocky9.repo" ] || mv -f /etc/yum.repos.d/nutanix_rocky9.repo /etc/yum.repos.d/nutanix_rocky9.repo.disabled'
-        - dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
-        - dnf -y install docker-ce docker-ce-cli containerd.io
-        - systemctl --now enable docker
-        - usermod -aG docker nutanix
-        - 'curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl'
-        - chmod +x /usr/local/bin/kubectl
-        - 'curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash'
-        - eject
-        - 'wall "If you are seeing this message, please reconnect your SSH session. Otherwise, the NKP CLI installation process may fail."'
-        final_message: "The machine is ready after $UPTIME seconds. Go ahead and install the NKP CLI using: $ curl -sL https://raw.githubusercontent.com/nutanixdev/nkp-quickstart/main/scripts/get-nkp-cli | bash"
-        ```
-
+         ```yaml
+    #cloud-config
+    ssh_pwauth: true
+    chpasswd:
+      expire: false
+      users:
+      - name: nutanix
+        password: nutanix/4u # Recommended to change the password or update the script to use SSH keys
+        type: text
+    bootcmd:
+    - mkdir -p /etc/docker
+    write_files:
+    - content: |
+        {
+            "insecure-registries": ["harbor.ntnx.local"]
+        }
+      path: /etc/docker/daemon.json
+    runcmd:
+    - '[ ! -f "/etc/yum.repos.d/nutanix_rocky9.repo" ] || mv -f /etc/yum.repos.d/nutanix_rocky9.repo /etc/yum.repos.d/nutanix_rocky9.repo.disabled'
+    - dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+    - dnf -y install docker-ce docker-ce-cli containerd.io
+    - systemctl --now enable docker
+    - usermod -aG docker nutanix
+    - 'curl -Lo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl'
+    - chmod +x /usr/local/bin/kubectl
+    - 'curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash'
+    - dnf install -y bash-completion
+    - source <(kubectl completion bash)
+    - echo "source <(kubectl completion bash)" >> home/nutanix/.bashrc
+    - echo "alias k=kubectl" >> /home/nutanix/.bashrc
+    - echo "complete -o default -F __start_kubectl k" >> home/nutanix/.bashrc
+    - 'wget https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz'
+    - tar zxvf k9s_Linux_amd64.tar.gz 
+    - mv k9s /usr/local/bin
+    - rm -f k9s_Linux_amd64.tar.gz
+    - eject
+    - 'wall "If you are seeing this message, please reconnect your SSH session. Otherwise, the NKP CLI installation process may fail."'
+    final_message: "The machine is ready after $UPTIME seconds. Go ahead and install the NKP CLI using: $ curl -sL https://raw.githubusercontent.com/nutanixdev/nkp-quickstart/main/scripts/get-nkp-cli | bash"
+    ```
     <details>
     <summary>click to view example</summary>
     <IMG src="./images/create_vm_summary.png" atl="Create VM summary" />
