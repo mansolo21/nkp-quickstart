@@ -5,7 +5,7 @@
 	export IMAGE_NAME="nkp-rocky-9.5-release-cis-1.30.5-20241204003513.qcow2" # Name of the VM image to use for cluster nodes 
 	export PRISM_ELEMENT_CLUSTER_NAME="Trevor-1" # Name of the Nutanix Prism Element cluster 
 	export SUBNET_NAME="kubernetes" # Name of the subnet to use for cluster nodes 
-	export PROJECT_NAME="Default" # Name of the Nutanix project 
+	export PROJECT_NAME="Default" # Name of the Nutanix project (make sure project exists, is NOT mandatory) 
 	export CONTROL_PLANE_REPLICAS="3" # Number of control plane replicas 
 	export CONTROL_PLANE_VCPUS="4" # Number of vCPUs for control plane nodes 
 	export CONTROL_PLANE_CORES_PER_VCPU="1" # Number of cores per vCPU for control plane nodes 
