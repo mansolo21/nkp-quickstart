@@ -170,6 +170,8 @@ For NKP CLI:
 
     - Static IP address for the control plane VIP
     - One or more IP addresses for the NKP dashboard and load-balancing service
+    - Prism Central is compatible with NKP version
+    - Rocky image is compatible with NKP version
 
     Note: The IP addresses must be in the same subnet as the virtual machines.
 
