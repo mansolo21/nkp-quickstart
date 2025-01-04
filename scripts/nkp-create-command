@@ -30,9 +30,9 @@ nkp create cluster nutanix --cluster-name $CLUSTER_NAME \
 --self-managed \
 --registry-mirror-url $REGISTRY_URL \
 --registry-mirror-cacert $REGISTRY_CA \
---registry-mirror-username $REGISTRY_USERNAME \
---registry-mirror-password $REGISTRY_PASSWORD \
+--registry-mirror-username=$REGISTRY_USERNAME \
+--registry-mirror-password=$REGISTRY_PASSWORD \
 --registry-url $DOCKER_REGISTRY \
 --registry-cacert $REGISTRY_CA \
---registry-username $REGISTRY_USERNAME \
---registry-password $REGISTRY_PASSWORD
+--registry-username=$REGISTRY_USERNAME \
+--registry-password=$REGISTRY_PASSWORD
