@@ -81,7 +81,7 @@ The NKP CLI is a command-line interface for managing NKP-based workflows. This g
 For NKP CLI:
 
 - Internet connectivity
-- Add NKP Rocky Linux to Prism Central. **DO NOT CHANGE** the auto-populated image name
+- Add NKP Rocky Linux to Prism Central. **DO NOT CHANGE** the auto-populated image name (must contain "release" in the name)
 
     <details>
     <summary>click to view example</summary>
