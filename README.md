@@ -273,30 +273,9 @@ This installation method lets you fully customize your cluster configuration. Th
         - systemctl --now enable docker
         - usermod -aG docker nutanix
         - newgrp docker
-        - 'curl -Lo /root/harbor-offline-installer-v2.12.1-rc3.tgz "https://github.com/goharbor/harbor/releases/download/v2.12.1-rc3/harbor-offline-installer-v2.12.1-rc3.tgz"'
-        - tar -zxvf harbor-offline-installer-v2.12.1-rc3.tgz
+        - 'curl -Lo /home/nutanix/harbor-offline-installer-v2.12.1-rc3.tgz "https://github.com/goharbor/harbor/releases/download/v2.12.1-rc3/harbor-offline-installer-v2.12.1-rc3.tgz"'
+        - tar -zxvf /home/nutanix/harbor-offline-installer-v2.12.1-rc3.tgz
         - dnf -y install git
-        - nmcli con modify "System eth0" ipv4.addresses 10.48.71.101/23
-        - nmcli con modify "System eth0" ipv4.method manual
-        - nmcli con modify "System eth0" ipv4.gateway 10.48.70.1
-        - nmcli con modify "System eth0" ipv4.dns 10.48.104.10
-        - 'openssl req -out harbor.csr -new -newkey rsa:2048 -nodes -sha256 -keyout harbor.key'
-        - echo "subjectKeyIdentifier   = hash" >> v3.ext
-        - echo "authorityKeyIdentifier = keyid:always,issuer:always" >> v3.ext
-        - echo "basicConstraints       = CA:TRUE" >> v3.ext
-        - echo "keyUsage               = digitalSignature, nonRepudiation, keyEncipherment,dataEncipherment, keyAgreement, keyCertSign" >> v3.ext
-        - echo "subjectAltName         = DNS:*.ntnx.local,DNS:harbor,IP:10.48.71.101" >> v3.ext
-        - echo "issuerAltName          = issuer:copy" >> v3.ext
-        - 'openssl x509 -req -days 9999 -in harbor.csr -sha256 -signkey harbor.key -out harbor.crt -extfile v3.ext -subj "/C=ES/ST=Provincia/L=Ciudad/O=NombreEmpresa/OU=UnidadOrganizativa/CN=ntnx.local"'
-        - 'openssl x509 -inform PEM -in harbor.crt -out harbor.cert'
-        - mkdir /home/nutanix/certs
-        - cp harbor.key harbor.cert /home/nutanix/certs
-        - 'chown nutanix:nutanix -R /home/nutanix/certs'
-        - chmod 666 -R  /home/nutanix/certs
-        - mkdir -p /etc/docker/certs.d/ntnx.local
-        - cp harbor.cert harbor.key /etc/docker/certs.d/ntnx.local/
-        - cp harbor.crt /etc/pki/ca-trust/source/anchors/
-        - update-ca-trust
         - eject
     ```
 
