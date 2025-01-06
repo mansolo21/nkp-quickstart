@@ -275,6 +275,7 @@ This installation method lets you fully customize your cluster configuration. Th
         - newgrp docker
         - 'curl -Lo /root/harbor-offline-installer-v2.12.1-rc3.tgz "https://github.com/goharbor/harbor/releases/download/v2.12.1-rc3/harbor-offline-installer-v2.12.1-rc3.tgz"'
         - tar -zxvf harbor-offline-installer-v2.12.1-rc3.tgz
+        - dnf -y install git
         - 'openssl req -out harbor.csr -new -newkey rsa:2048 -nodes -sha256 -keyout harbor.key'
         - echo "subjectKeyIdentifier   = hash" >> v3.ext
         - echo "authorityKeyIdentifier = keyid:always,issuer:always" >> v3.ext
