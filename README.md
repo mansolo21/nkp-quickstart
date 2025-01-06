@@ -43,6 +43,7 @@ Steps to install all the required CLIs (nkp, kubectl and helm) to create and man
     - tar zxvf k9s_Linux_amd64.tar.gz 
     - mv k9s /usr/local/bin
     - rm -f k9s_Linux_amd64.tar.gz
+    - dnf -y install git
     - eject
     - 'wall "If you are seeing this message, please reconnect your SSH session. Otherwise, the NKP CLI installation process may fail."'
     final_message: "The machine is ready after $UPTIME seconds. Go ahead and install the NKP CLI using: $ curl -sL https://raw.githubusercontent.com/nutanixdev/nkp-quickstart/main/scripts/get-nkp-cli | bash"
@@ -141,6 +142,7 @@ For NKP CLI:
     - tar zxvf k9s_Linux_amd64.tar.gz 
     - mv k9s /usr/local/bin
     - rm -f k9s_Linux_amd64.tar.gz
+    - dnf -y install git
     - eject
     - 'wall "If you are seeing this message, please reconnect your SSH session. Otherwise, the NKP CLI installation process may fail."'
     final_message: "The machine is ready after $UPTIME seconds. Go ahead and install the NKP CLI using: $ curl -sL https://raw.githubusercontent.com/nutanixdev/nkp-quickstart/main/scripts/get-nkp-cli | bash"
