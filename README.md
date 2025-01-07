@@ -276,7 +276,7 @@ This installation method lets you fully customize your cluster configuration. Th
         - usermod -aG docker nutanix
         - newgrp docker
         - 'curl -Lo harbor-offline-installer-v2.12.1-rc3.tgz "https://github.com/goharbor/harbor/releases/download/v2.12.1-rc3/harbor-offline-installer-v2.12.1-rc3.tgz"'
-        - tar -zxvf /home/nutanix/harbor-offline-installer-v2.12.1-rc3.tgz
+        - tar -zxvf harbor-offline-installer-v2.12.1-rc3.tgz
         - dnf -y install git
         - eject
     ```
