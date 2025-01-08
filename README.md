@@ -37,13 +37,18 @@ Steps to install all the required CLIs (nkp, kubectl and helm) to create and man
     - dnf install -y bash-completion
     - source <(kubectl completion bash)
     - echo "source <(kubectl completion bash)" >> home/nutanix/.bashrc
-    - echo "alias k=kubectl" >> /home/nutanix/.bashrc
+    - echo "alias kubectl=kubecolor" >> /home/nutanix/.bashrc
+    - echo "alias k=kubecolor" >> /home/nutanix/.bashrc
     - echo "complete -o default -F __start_kubectl k" >> home/nutanix/.bashrc
     - 'wget https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz'
     - tar zxvf k9s_Linux_amd64.tar.gz 
     - mv k9s /usr/local/bin
     - rm -f k9s_Linux_amd64.tar.gz
     - dnf -y install git
+    - dnf -y install go
+    - 'go install github.com/hidetatz/kubecolor/cmd/kubecolor@latest'
+    - cp /home/nutanix/go/bin/kubecolor /usr/local/bin
+    - chmod 555 -R /usr/local/bin
     - eject
     - 'wall "If you are seeing this message, please reconnect your SSH session. Otherwise, the NKP CLI installation process may fail."'
     final_message: "The machine is ready after $UPTIME seconds. Go ahead and install the NKP CLI using: $ curl -sL https://raw.githubusercontent.com/nutanixdev/nkp-quickstart/main/scripts/get-nkp-cli | bash"
@@ -136,13 +141,18 @@ For NKP CLI:
     - dnf install -y bash-completion
     - source <(kubectl completion bash)
     - echo "source <(kubectl completion bash)" >> home/nutanix/.bashrc
-    - echo "alias k=kubectl" >> /home/nutanix/.bashrc
+    - echo "alias kubectl=kubecolor" >> /home/nutanix/.bashrc
+    - echo "alias k=kubecolor" >> /home/nutanix/.bashrc
     - echo "complete -o default -F __start_kubectl k" >> home/nutanix/.bashrc
     - 'wget https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz'
     - tar zxvf k9s_Linux_amd64.tar.gz 
     - mv k9s /usr/local/bin
     - rm -f k9s_Linux_amd64.tar.gz
     - dnf -y install git
+    - dnf -y install go
+    - 'go install github.com/hidetatz/kubecolor/cmd/kubecolor@latest'
+    - cp /home/nutanix/go/bin/kubecolor /usr/local/bin
+    - chmod 555 -R /usr/local/bin
     - eject
     - 'wall "If you are seeing this message, please reconnect your SSH session. Otherwise, the NKP CLI installation process may fail."'
     final_message: "The machine is ready after $UPTIME seconds. Go ahead and install the NKP CLI using: $ curl -sL https://raw.githubusercontent.com/nutanixdev/nkp-quickstart/main/scripts/get-nkp-cli | bash"
