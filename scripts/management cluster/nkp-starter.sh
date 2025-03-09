@@ -1,0 +1,28 @@
+nkp create cluster nutanix -v 5 --cluster-name $CLUSTER_NAME \
+--cluster-hostname $INGRESS_FQDN \
+--ingress-ca $INGRESS_CA \
+--ingress-certificate $INGRESS_CERT \
+--ingress-private-key $INGRESS_KEY \
+--endpoint $NUTANIX_PC_FQDN_ENDPOINT_WITH_PORT \
+--control-plane-endpoint-ip $CONTROL_PLANE_IP \
+--control-plane-vm-image $IMAGE_NAME \
+--control-plane-prism-element-cluster $PRISM_ELEMENT_CLUSTER_NAME \
+--control-plane-subnets $SUBNET_NAME \
+--control-plane-replicas $CONTROL_PLANE_REPLICAS \
+--control-plane-vcpus $CONTROL_PLANE_VCPUS \
+--control-plane-cores-per-vcpu $CONTROL_PLANE_CORES_PER_VCPU \
+--control-plane-memory $CONTROL_PLANE_MEMORY_GIB \
+--worker-vm-image $IMAGE_NAME \
+--worker-prism-element-cluster $PRISM_ELEMENT_CLUSTER_NAME \
+--worker-subnets $SUBNET_NAME \
+--worker-replicas $WORKER_REPLICAS \
+--worker-vcpus $WORKER_VCPUS \
+--worker-cores-per-vcpu $WORKER_CORES_PER_VCPU \
+--worker-memory $WORKER_MEMORY_GIB \
+--ssh-public-key-file $SSH_KEY_FILE \
+--csi-file-system $CSI_FILESYSTEM \
+--csi-storage-container $NUTANIX_STORAGE_CONTAINER_NAME \
+--csi-hypervisor-attached-volumes=$CSI_HYPERVISOR_ATTACHED \
+--kubernetes-service-load-balancer-ip-range $LB_IP_RANGE \
+--insecure \
+--self-managed \
