@@ -109,7 +109,7 @@ For NKP CLI:
     - vCPUs: 2
     - Memory: 8
     - Disk: Clone from Image (select the Rocky Linux you previously uploaded)
-    - Disk Capacity: 128 (default is 20)
+    - Disk Capacity: 180 (default is 20)
     - Guest Customization: Cloud-init (Linux)
     - Custom Script:
     ```yaml
