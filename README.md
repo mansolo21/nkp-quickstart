@@ -36,10 +36,10 @@ Steps to install all the required CLIs (nkp, kubectl and helm) to create and man
     - 'curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash'
     - dnf install -y bash-completion
     - source <(kubectl completion bash)
-    - echo "source <(kubectl completion bash)" >> home/nutanix/.bashrc
+    - echo "source <(kubectl completion bash)" >> /home/nutanix/.bashrc
     - echo "alias kubectl=kubecolor" >> /home/nutanix/.bashrc
     - echo "alias k=kubecolor" >> /home/nutanix/.bashrc
-    - echo "complete -o default -F __start_kubectl k" >> home/nutanix/.bashrc
+    - echo "complete -o default -F __start_kubectl k" >> /home/nutanix/.bashrc
     - 'wget https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz'
     - tar zxvf k9s_Linux_amd64.tar.gz 
     - mv k9s /usr/local/bin
@@ -47,7 +47,7 @@ Steps to install all the required CLIs (nkp, kubectl and helm) to create and man
     - dnf -y install git
     - dnf -y install go
     - 'go install github.com/hidetatz/kubecolor/cmd/kubecolor@latest'
-    - cp /home/nutanix/go/bin/kubecolor /usr/local/bin
+    - cp /root/go/bin/kubecolor /usr/local/bin
     - chmod 555 -R /usr/local/bin
     - eject
     - 'wall "If you are seeing this message, please reconnect your SSH session. Otherwise, the NKP CLI installation process may fail."'
